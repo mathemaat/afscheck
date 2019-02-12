@@ -2,3 +2,4 @@
 .sass-cache
 *.pyc
 
+afscheck/local-settings.ini
