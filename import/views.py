@@ -1,6 +1,5 @@
-from django.shortcuts import HttpResponse
+from django.shortcuts import render
 
-# Create your views here.
+
 def index(request):
-    return HttpResponse("Hello, world. You're at the import index.")
-
+    return render(request, 'import/index.html')

@@ -1,0 +1,9 @@
+{% extends "outline.html" %}
+
+{% block body %}
+  <form method="post" enctype="multipart/form-data" action="{% url 'import:index' %}">
+    {% csrf_token %}
+    <input type="file" name="csv" />
+    <input type="submit" value="Upload" />
+  </form>
+{% endblock %}
