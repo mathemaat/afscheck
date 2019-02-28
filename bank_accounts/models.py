@@ -1,3 +1,16 @@
 from django.db import models
 
-# Create your models here.
+from counterparties.models import Counterparty
+
+
+class Bank(models.Model):
+    name = models.CharField(max_length=255)
+    iban_identifier = models.CharField(max_length=4)
+
+
+class BankAccount(models.Model):
+    iban = models.CharField(max_length=255, unique=True, null=True, blank=True)
+    number = models.CharField(max_length=255, unique=True, null=True, blank=True)
+    is_old_dutch = models.BooleanField()
+    bank = models.ForeignKey(Bank, on_delete=models.PROTECT)
+    counterparty = models.ForeignKey(Counterparty, on_delete=models.PROTECT)
