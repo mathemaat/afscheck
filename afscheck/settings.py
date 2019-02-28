@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bank_accounts.apps.BankAccountsConfig',
+    'bank_transactions.apps.BankTransactionsConfig',
     'counterparties.apps.CounterpartiesConfig',
     'import.apps.ImportConfig'
 ]
