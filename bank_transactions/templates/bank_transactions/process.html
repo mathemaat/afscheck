@@ -2,7 +2,10 @@
 
 {% block body %}
   <p>
-    Onder constructie
+    {% for contra_account in data.values %}
+      {{ contra_account }}
+      <br />
+    {% endfor %}
   </p>
   <a href="{% url 'bank_transactions:index' %}">Terug</a>
 {% endblock %}

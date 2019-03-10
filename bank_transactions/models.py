@@ -1,3 +1,5 @@
+import hashlib
+
 from django.db import models
 
 from classes.Iban import Iban
@@ -34,6 +36,14 @@ class ContraAccount(models.Model):
             return '%s (%s)' % (self.description, bank_account_number)
         else:
             return self.description
+
+    def get_md5_key(self):
+        parts = (
+            self.description,
+            self.bank_account_number,
+        )
+        text = "-".join(parts)
+        return hashlib.md5(text.encode('utf-8')).hexdigest()
 
 
 class MutationType(models.Model):

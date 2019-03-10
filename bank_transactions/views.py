@@ -13,13 +13,15 @@ def process(request):
         return render(request, 'import/index.html', context)
     file = request.FILES['csv']
     if file.content_type != 'text/csv':
-        context = {'error': 'Geen geldig csv-bestand geüpload' }
+        context = {'error': 'Geen geldig csv-bestand geüpload'}
         return render(request, 'import/index.html', context)
     data = file.read().decode('utf-8')
     csvparser = INGBankStatementParser(data)
     if csvparser.is_clean():
         if csvparser.is_valid():
-            return render(request, 'bank_transactions/process.html')
+            contra_accounts = csvparser.handle_contra_accounts()
+            #return render(request, 'bank_transactions/process.html', {'data': csvparser.rows})
+            return render(request, 'bank_transactions/process.html', {'data': contra_accounts})
         else:
             return HttpResponse('<br />'.join(csvparser.validation_errors()))
     else:

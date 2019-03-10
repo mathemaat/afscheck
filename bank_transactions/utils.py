@@ -31,3 +31,25 @@ class INGBankStatementParser(CSVParser):
 
     def validate(self):
         pass
+
+    def handle_contra_accounts(self):
+        contra_accounts = {}
+        for row in self.rows:
+            contra_account = ContraAccount(
+                description = row[self.KOLOM_NAAM_OMSCHRIJVING],
+                bank_account_number = row[self.KOLOM_TEGENREKENING],
+            )
+            key = contra_account.get_md5_key()
+            # continue with the next row if we encountered this contra account before
+            if key in contra_accounts:
+                continue
+            # check whether the contra account already exists in the database
+            try:
+                existing = ContraAccount.objects.get(
+                    description=contra_account.description,
+                    bank_account_number=contra_account.bank_account_number,
+                )
+                contra_accounts[key] = existing
+            except ContraAccount.DoesNotExist:
+                contra_accounts[key] = contra_account
+        return contra_accounts
