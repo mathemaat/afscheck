@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'bank_accounts.apps.BankAccountsConfig',
     'bank_transactions.apps.BankTransactionsConfig',
     'counterparties.apps.CounterpartiesConfig',
-    'import.apps.ImportConfig'
 ]
 
 MIDDLEWARE = [

@@ -1,5 +1,7 @@
 from classes.CSVParser import CSVParser
 
+from bank_transactions.models import ContraAccount
+
 
 class INGBankStatementParser(CSVParser):
 

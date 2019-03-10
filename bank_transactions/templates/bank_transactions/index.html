@@ -1,5 +1,14 @@
 {% extends "outline.html" %}
 
 {% block body %}
-  Hello, world. You're at the bank transactions index.
+  <form method="post" enctype="multipart/form-data" action="{% url 'bank_transactions:process' %}">
+    {% csrf_token %}
+    <input type="file" name="csv" />
+    <input type="submit" value="Upload" />
+  </form>
+  {% if error %}
+    <p style="color:red">
+      {{ error }}
+    </p>
+  {% endif %}
 {% endblock %}

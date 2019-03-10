@@ -22,5 +22,4 @@ urlpatterns = [
     path('bank_accounts', include('bank_accounts.urls')),
     path('bank_transactions', include('bank_transactions.urls')),
     path('counterparties', include('counterparties.urls')),
-    path('', include('import.urls')),
 ]
