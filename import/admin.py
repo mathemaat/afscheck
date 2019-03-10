@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import INGMutationType
+
+
+class INGMutationTypeAdmin(admin.ModelAdmin):
+    list_display = ('description', 'mutation_type')
+
+admin.site.register(INGMutationType, INGMutationTypeAdmin)
