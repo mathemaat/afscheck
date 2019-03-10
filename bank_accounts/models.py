@@ -16,7 +16,6 @@ class BankAccount(models.Model):
     iban = models.CharField(max_length=255, unique=True, null=True, blank=True)
     number = models.CharField(max_length=255, unique=True, null=True, blank=True)
     bank = models.ForeignKey(Bank, on_delete=models.PROTECT)
-    counterparty = models.ForeignKey(Counterparty, on_delete=models.PROTECT, null=True, blank=True)
 
     def __str__(self):
         if len(self.iban) >= 1:
