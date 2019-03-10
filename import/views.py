@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from classes.INGBankStatementParser import INGBankStatementParser
+from .utils import INGBankStatementParser
 
 
 def index(request):
