@@ -13,7 +13,7 @@ def process(request):
         return render(request, 'import/index.html', context)
     file = request.FILES['csv']
     if file.content_type != 'text/csv':
-        context = {'error': 'Geen geldig csv-bestand geüpload' }
+        context = {'error': 'Geen geldig csv-bestand geüpload'}
         return render(request, 'import/index.html', context)
     data = file.read().decode('utf-8')
     csvparser = INGBankStatementParser(data)
