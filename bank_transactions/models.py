@@ -59,5 +59,6 @@ class INGMutationType(models.Model):
 class BankTransaction(models.Model):
     date = models.DateTimeField()
     amount = models.DecimalField(max_digits=8, decimal_places=2)
+    bank_statement = models.ForeignKey(BankStatement, on_delete=models.PROTECT)
     contra_account = models.ForeignKey(Counterparty, on_delete=models.PROTECT)
     mutation_type = models.ForeignKey(MutationType, on_delete=models.PROTECT)
