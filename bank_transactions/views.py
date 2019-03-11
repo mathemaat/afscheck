@@ -19,6 +19,8 @@ def process(request):
     csvparser = INGBankStatementParser(data)
     if csvparser.is_clean():
         if csvparser.is_valid():
+            bank_statement = csvparser.save_bank_statement()
+            csvparser.save_bank_transactions(bank_statement)
             return render(request, 'bank_transactions/process.html')
         else:
             return HttpResponse('<br />'.join(csvparser.validation_errors()))
