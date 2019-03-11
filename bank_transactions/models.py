@@ -18,7 +18,7 @@ class BankStatement(models.Model):
 class ContraAccount(models.Model):
     description = models.CharField(max_length=255)
     bank_account_number = models.CharField(max_length=255)
-    counterparty = models.ForeignKey(Counterparty, on_delete=models.PROTECT)
+    counterparty = models.ForeignKey(Counterparty, on_delete=models.PROTECT, null=True, blank=True)
     bank_account = models.ForeignKey(BankAccount, on_delete=models.PROTECT, null=True, blank=True)
 
     class Meta:
