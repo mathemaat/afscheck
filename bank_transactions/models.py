@@ -84,3 +84,4 @@ class BankTransaction(models.Model):
     bank_statement = models.ForeignKey(BankStatement, on_delete=models.PROTECT)
     contra_account = models.ForeignKey(ContraAccount, on_delete=models.PROTECT)
     mutation_type = models.ForeignKey(MutationType, on_delete=models.PROTECT)
+    memo = models.TextField()

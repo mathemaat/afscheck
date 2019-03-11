@@ -102,5 +102,6 @@ class INGBankStatementParser(CSVParser):
                 amount = amount,
                 contra_account = contra_account,
                 mutation_type = mutation_type,
+                memo = row[self.KOLOM_MEDEDELINGEN],
             )
             bank_transaction.save()
