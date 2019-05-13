@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from .utils import INGBankStatementParser
+from .models import ContraAccount
 
+from .utils import INGBankStatementParser
 
 
 def upload(request):
@@ -26,3 +27,10 @@ def upload(request):
             return HttpResponse('<br />'.join(csvparser.validation_errors()))
     else:
         return HttpResponse('<br />'.join(csvparser.get_sanitisation_errors()))
+
+def unlinked_contra_accounts(request):
+    contra_accounts = ContraAccount.objects.filter(
+        counterparty_id__isnull=True
+    ).order_by('bank_account_number', 'description')
+    context = {'unlinked': contra_accounts}
+    return render(request, 'bank_transactions/unlinked.html', context)
