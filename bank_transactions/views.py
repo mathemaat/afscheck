@@ -10,11 +10,11 @@ def index(request):
 def process(request):
     if request.method != 'POST' or 'csv' not in request.FILES:
         context = {'error': 'Geen bestand geüpload'}
-        return render(request, 'import/index.html', context)
+        return render(request, 'bank_transactions/index.html', context)
     file = request.FILES['csv']
     if file.content_type != 'text/csv':
         context = {'error': 'Geen geldig csv-bestand geüpload'}
-        return render(request, 'import/index.html', context)
+        return render(request, 'bank_transactions/index.html', context)
     data = file.read().decode('utf-8')
     csvparser = INGBankStatementParser(data)
     if csvparser.is_clean():
